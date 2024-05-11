@@ -1,0 +1,38 @@
+This Python script is designed to perform sentiment analysis on Twitter data using a Support Vector Machine (SVM) classifier. 
+It involves several steps, including data preprocessing, feature engineering, and model training and evaluation. 
+Here's a step-by-step explanation:
+Importing Libraries: The script begins by importing necessary libraries such as pandas for data manipulation
+- numpy for numerical operations 
+- re for regular expressions 
+- nltk for natural language processing
+- various components from sklearn for machine learning tasks.
+
+Loading Data:
+The script loads a CSV file named 'Apple-Twitter-Sentiment-DFE.csv' into a pandas DataFrame. 
+This file presumably contains tweets and their associated sentiments.
+
+Text Preprocessing Function: 
+A function named preprocess_text is defined to clean the text data. 
+It converts the text to lowercase, removes URLs, special characters, hashtags, and emojis, and filters out English stopwords.
+
+Applying Preprocessing: 
+The script checks if the DataFrame has a column named 'text'. 
+If it does, it applies the preprocess_text function to each entry in this column to create a new column named 'clean_text'.
+
+Mapping Emotions to Sentiments:
+Another function, map_emotions, is defined to map words in the cleaned text to their associated emotions based on a predefined dictionary (emotion_dict). 
+This function is applied to the 'clean_text' column to create a new column named 'emotions'.
+
+Feature Engineering: 
+The script then checks if the 'emotions' column exists. 
+If it does, it uses the TfidfVectorizer from sklearn to transform the 'emotions' text into a matrix of TF-IDF features. 
+This matrix is then split into training and testing sets using train_test_split.
+
+Model Training: 
+A linear SVM model is trained on the training set using the SVC class from sklearn. 
+The model learns to predict the sentiment of tweets based on the TF-IDF features of their emotions.
+
+Model Evaluation: 
+The trained model is used to predict the sentiments of the tweets in the test set. 
+The accuracy of these predictions is calculated using accuracy_score, and a detailed report is printed using classification_report. 
+Additionally, a confusion matrix is generated to visualize the performance of the model.
